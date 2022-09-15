@@ -3,7 +3,7 @@ const knex = require('knex')
 const db = knex({
   client: 'sqlite3',
   connection: {
-    filename: './data/dealer.db3'
+    filename: './data/testing.db3'
   },
   useNullAsDefault: true
 })
@@ -22,7 +22,8 @@ const create = async (car) => {
 }
 
 const checkVin = async vin => {
-  return db('cars').where('vin', vin)
+  const car = await db('cars').where('vin', vin)
+  return car
 }
 
 module.exports = {
